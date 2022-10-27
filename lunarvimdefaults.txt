@@ -1,0 +1,160 @@
+nvim-telescope/telescope.nvim
+lewis6991/gitsigns.nvim
+folke/lua-dev.nvim
+nvim-treesitter/nvim-treesitter
+folke/which-key.nvim
+akinsho/bufferline.nvim
+hrsh7th/nvim-cmp
+hrsh7th/cmp-path
+kyazdani42/nvim-tree.lua
+numToStr/Comment.nvim
+kyazdani42/nvim-web-devicons
+b0o/schemastore.nvim
+windwp/nvim-autopairs
+goolord/alpha-nvim
+JoosepAlviste/nvim-ts-context-commentstring
+ahmedkhalf/project.nvim
+L3MON4D3/LuaSnip
+saadparwaiz1/cmp_luasnip
+nvim-lua/plenary.nvim
+hrsh7th/cmp-buffer
+antoinemadec/FixCursorHold.nvim
+lunarvim/onedarker.nvim
+nvim-lua/popup.nvim
+Tastyep/structlog.nvim
+jose-elias-alvarez/null-ls.nvim
+williamboman/nvim-lsp-installer
+neovim/nvim-lspconfig
+rafamadriz/friendly-snippets
+tamago324/nlsp-settings.nvim
+hrsh7th/cmp-nvim-lsp
+nvim-lualine/lualine.nvim
+nvim-telescope/telescope-fzf-native.nvim
+lukas-reineke/indent-blankline.nvim
+wbthomason/packer.nvim
+rcarriga/nvim-notify
+Pocco81/DAPInstall.nvim
+akinsho/toggleterm.nvim
+mfussenegger/nvim-dap
+
+https://www.lunarvim.org/docs/plugins/extra-plugins
+
+edit and review github issues and pull requests
+
+{
+  "pwntester/octo.nvim",
+  event = "BufRead",
+},
+
+rainbow brakets
+{
+  "p00f/nvim-ts-rainbow",
+},
+
+treesitter context setup
+{
+    "romgrk/nvim-treesitter-context",
+    config = function()
+      require("treesitter-context").setup{
+        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+        throttle = true, -- Throttles plugin updates (may improve performance)
+        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+        patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+          -- For all filetypes
+          -- Note that setting an entry here replaces all other patterns for this entry.
+          -- By setting the 'default' entry below, you can control which nodes you want to
+          -- appear in the context window.
+          default = {
+            'class',
+            'function',
+            'method',
+          },
+        },
+      }
+    end
+  }, 
+
+
+  switch between projects
+	  {
+  "nvim-telescope/telescope-project.nvim",
+  event = "BufWinEnter",
+  setup = function()
+    vim.cmd [[packadd telescope.nvim]]
+  end,
+},
+
+previewing goto definition calls
+
+{
+  "rmagatti/goto-preview",
+  config = function()
+  require('goto-preview').setup {
+        width = 120; -- Width of the floating window
+        height = 25; -- Height of the floating window
+        default_mappings = false; -- Bind default mappings
+        debug = false; -- Print debug information
+        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        -- You can use "default_mappings = true" setup option
+        -- Or explicitly set keybindings
+        -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+        -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+        -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
+    }
+  end
+},
+
+interactive scratchpad for hackers
+{
+  "metakirby5/codi.vim",
+  cmd = "Codi",
+},
+
+
+edit rails projects
+
+{
+  "tpope/vim-rails",
+  cmd = {
+    "Eview",
+    "Econtroller",
+    "Emodel",
+    "Smodel",
+    "Sview",
+    "Scontroller",
+    "Vmodel",
+    "Vview",
+    "Vcontroller",
+    "Tmodel",
+    "Tview",
+    "Tcontroller",
+    "Rails",
+    "Generate",
+    "Runner",
+    "Extract"
+  }
+},
+
+session saving
+{
+  "folke/persistence.nvim",
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    module = "persistence",
+    config = function()
+      require("persistence").setup {
+        dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
+        options = { "buffers", "curdir", "tabpages", "winsize" },
+      }
+  end,
+},
+
+find and replace even globally
+
+{
+  "windwp/nvim-spectre",
+  event = "BufRead",
+  config = function()
+    require("spectre").setup()
+  end,
+},
