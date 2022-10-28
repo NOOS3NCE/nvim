@@ -14,7 +14,11 @@ require('telescope')
 --Plugin specific configs.
 require('plugs.treesitter')
 require('neoscroll').setup()
-
+vim.opt.list = true
+vim.opt.listchars:append "eol:↴"
+require("indent_blankline").setup {
+    show_end_of_line = true,
+}
 vim.opt.smartindent = true
 vim.opt.expandtab = false
 vim.opt.softtabstop = -1

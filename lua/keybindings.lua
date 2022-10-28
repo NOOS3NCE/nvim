@@ -53,3 +53,6 @@ vim.cmd('noremap <leader>bg :GetprOpen<CR>')
 
 --FUZZY SEARCH
 vim.cmd('noremap <leader>ff :Telescope<CR>')
+
+-- WINDOW
+vim.cmd('noremap <leader>wv :vsplit<CR>')
