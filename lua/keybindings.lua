@@ -6,6 +6,7 @@ vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.timeoutlen = 50
+local wk = require("which-key")
 -- Remap for dealing with word wrap. In general, the `nvim_set_keymap` is the function we can use to create any keymap you'd wish. I tend to keep those related to the whole editor here, while leaving the ones for specific plugins to their own configuration files. That way if I ever remove or change plugins I can keep my keybindings clean.
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
@@ -51,8 +52,17 @@ vim.cmd('nnoremap <leader>yc :lua require("telescope").extensions.git_worktree.c
 vim.cmd('noremap <leader>bt :BlamerToggle<CR>')
 vim.cmd('noremap <leader>bg :GetprOpen<CR>')
 
---FUZZY SEARCH
-vim.cmd('noremap <leader>ff :Telescope<CR>')
+-- TELESCOPE
+wk.register({
+  ["<leader>f"] = { name = "Find" },
+  ["<leader>ff"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find File" },
+  ["<leader>fg"] = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep" },
+  ["<leader>fb"] = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List Buffers" },
+  ["<leader>fh"] = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Find Help" },
+})
 
 -- WINDOW
-vim.cmd('noremap <leader>wv :vsplit<CR>')
+wk.register({
+	["<leader>w"] = { name = "Window" },
+	["<leader>wv"] = { "<cmd> vsplit<CR>", "Vertical Split" },
+})
