@@ -14,10 +14,11 @@ require('telescope')
 --Plugin specific configs.
 require('plugs.treesitter')
 require('neoscroll').setup()
+
 vim.opt.list = true
-vim.opt.listchars:append "space:⋅"
+--vim.opt.listchars:append "space:"
 require("indent_blankline").setup {
-	space_char_blankline = " ",
+	space_char_blankline = "",
 }
 vim.opt.smartindent = true
 vim.opt.expandtab = false
@@ -26,12 +27,15 @@ vim.opt.cmdheight = 1
 vim.opt.showtabline = 0
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 -- Set pop up menus bgs to transparent, also sign column
 vim.cmd([[
 augroup my_color_scheme
 	autocmd!
 	autocmd ColorScheme * highlight Pmenu guibg=NONE ctermbg=NONE
 	autocmd ColorScheme * highlight SignColumn guibg=NONE ctermbg=NONE
+	autocmd ColorScheme * highlight VertSplit guibg=NONE ctermbg=NONE
+	autocmd ColorScheme * highlight BufferLineBackground guibg=NONE ctermbg=NONE
 augroup END ]])
 
 -- set no expand tab on opening any file (need this fix for ruby files)
@@ -54,7 +58,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Decrease update time.
-vim.opt.updatetime = 150
+vim.opt.updatetime = 50
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme defaults (order is important here).
@@ -71,7 +75,7 @@ require('gruvbox').setup({
 	invert_tabline = false,
 	invert_intend_guides = false,
 	inverse = false, -- invert background for search, diffs, statuslines and errors
-	contrast = '', -- can be "hard", "soft" or empty string
+	contrast = 'hard', -- can be "hard", "soft" or empty string
 	palette_overrides = {},
 	overrides = {},
 	dim_inactive = false,
@@ -90,11 +94,11 @@ require('harpoon').setup({
 })
 -- Highlight on yank (copy). It will do a nice highlight blink of the thing you just copied.
 vim.api.nvim_exec(
-  [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
+	 [[
+	 augroup YankHighlight
+		 autocmd!
+		 autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+	 augroup end
 ]],
   false
 )

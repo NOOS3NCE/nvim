@@ -1,4 +1,4 @@
--- KEYBINDINGS
+
 -- Plugin specific keybindings are in the plugin's config files.
 
 -- Remap space as leader key. Leader key is a special key that will allow us to make some additional keybindings. I'm using a spacebar, but you can use whatever you'd wish. We'll use it (for example) for searching and changing files (by pressing spacebar, then `s` and then `f`).
@@ -48,17 +48,23 @@ vim.cmd('nnoremap <leader><c-r> :lua require("harpoon.mark").rm_file()<cr>')
 vim.cmd('nnoremap <leader>ye :lua require("telescope").extensions.git_worktree.git_worktrees()<CR>')
 vim.cmd('nnoremap <leader>yc :lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>')
 
---GIT BLAME
+--GIT
+wk.register({
+	["<leader>g"] = { name = "GIT" },
+	["<leader>gd"] = { "<cmd>DiffViewOpen origin/dev<CR>", "Open Diff View" },
+	["<leader>gm"] = { "<cmd>DiffViewOpen origin/main<CR>", "Open Diff View" },
+	["<leader>gc"] = { "<cmd>DiffViewClose<CR>", "Close Diff View" },
+})
 vim.cmd('noremap <leader>bt :BlamerToggle<CR>')
 vim.cmd('noremap <leader>bg :GetprOpen<CR>')
 
 -- TELESCOPE
 wk.register({
-  ["<leader>f"] = { name = "Find" },
-  ["<leader>ff"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find File" },
-  ["<leader>fg"] = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep" },
-  ["<leader>fb"] = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List Buffers" },
-  ["<leader>fh"] = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Find Help" },
+	["<leader>f"] = { name = "Find" },
+	["<leader>ff"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find File" },
+	["<leader>fg"] = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep" },
+	["<leader>fb"] = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List Buffers" },
+	["<leader>fh"] = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Find Help" },
 })
 
 -- WINDOW
@@ -66,3 +72,6 @@ wk.register({
 	["<leader>w"] = { name = "Window" },
 	["<leader>wv"] = { "<cmd> vsplit<CR>", "Vertical Split" },
 })
+
+--AUTOSAVE
+vim.cmd('nnoremap <leader>n :ASToggle<CR>')
