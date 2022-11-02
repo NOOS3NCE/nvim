@@ -20,6 +20,7 @@ require('packer').startup(function()
 	use 'nvim-treesitter/nvim-treesitter-context'
 	--AUTOCOMPLETE
 	use 'neovim/nvim-lspconfig'
+	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-nvim-lsp'

@@ -1,18 +1,22 @@
 require('plugins')
 require('keybindings')
+require("lsp")
 require('telescope').load_extension('harpoon')
 require('telescope').load_extension('git_worktree')
-require('plugs.cmp')
-require('plugs.gitsigns')
 require('lualine').setup {
 	options = { theme = 'gruvbox' }
 }
+require('lualine').hide({
+	place = { 'tabline' }, -- The segment this change applies to.
+	unhide = false,  -- whether to reenable lualine again/
+})
 --NOT WORKING
-require('telescope')
---require("lsp")
 
 --Plugin specific configs.
+require('plugs.gitsigns')
 require('plugs.treesitter')
+require('plugs.cmp')
+require('plugs.telescope')
 require('neoscroll').setup()
 
 vim.opt.list = true
