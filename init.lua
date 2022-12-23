@@ -20,6 +20,10 @@ require('plugs.telescope')
 require("mason").setup()
 require('neoscroll').setup()
 require('Comment').setup({
+	toggler = {
+		---Line-comment toggle keymap
+		line = '<leader>/',
+	},
 	opleader = {
 		---Line-comment toggle keymap
 		line = '<leader>/',
