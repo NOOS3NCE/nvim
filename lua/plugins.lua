@@ -10,6 +10,7 @@ end
 -- Here we can declare the plugins we'll be using.
 local use = require('packer').use
 require('packer').startup(function()
+	use 'numToStr/Comment.nvim'
 	use 'wbthomason/packer.nvim'
 	use "lukas-reineke/indent-blankline.nvim"
 	use 'tpope/vim-fugitive'
@@ -95,6 +96,9 @@ require('packer').startup(function()
 				write_all_buffers = true,
 			}
 		end,
+	}
+	use {
+		 'williamboman/mason.nvim',
 	}
 end)
 

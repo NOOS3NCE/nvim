@@ -1,6 +1,6 @@
 require('plugins')
 require('keybindings')
-require("lsp")
+require('lsp')
 require('telescope').load_extension('harpoon')
 require('telescope').load_extension('git_worktree')
 require('lualine').setup {
@@ -17,7 +17,14 @@ require('plugs.gitsigns')
 require('plugs.treesitter')
 require('plugs.cmp')
 require('plugs.telescope')
+require("mason").setup()
 require('neoscroll').setup()
+require('Comment').setup({
+	opleader = {
+		---Line-comment toggle keymap
+		line = '<leader>/',
+	}
+})
 
 vim.opt.list = true
 --vim.opt.listchars:append "space:"

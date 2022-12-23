@@ -11,11 +11,11 @@ local wk = require("which-key")
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
---DISABLE ARROW KEYS
-vim.cmd("noremap <Up> <Nop>")
-vim.cmd("noremap <Down> <Nop>")
-vim.cmd("noremap <Left> <Nop>")
-vim.cmd("noremap <Right> <Nop>")
+--COMMENT
+--vim.cmd("nnoremap <leader>/ gcc")
+-- vim.api.nvim_set_keymap('n', '<Space>/', "'gcc'", { noremap = true, expr = true, silent = true })
+-- vim.api.nvim_set_keymap('v', '<Space>/', "'gc'", { noremap = true, expr = true, silent = true })
+--vim.cmd("vnoremap <leader>/ gc")
 
 --YANK/PASTE FROM CLIPBOARD
 vim.cmd('noremap y "*y')
@@ -32,8 +32,8 @@ vim.cmd("vnoremap <A-j> :m '>+1<CR>gv=gv")
 vim.cmd("vnoremap <A-k> :m '<-2<CR>gv=gv")
 
 --NVIM TREE
-vim.cmd("noremap <leader>tt :NvimTreeToggle<CR>")
-vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
+vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
+-- vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
 
 --HARPOON
 vim.cmd('nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>')
@@ -60,11 +60,9 @@ vim.cmd('noremap <leader>bg :GetprOpen<CR>')
 
 -- TELESCOPE
 wk.register({
-	["<leader>f"] = { name = "Find" },
-	["<leader>ff"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find File" },
-	["<leader>fg"] = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep" },
-	["<leader>fb"] = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List Buffers" },
-	["<leader>fh"] = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Find Help" },
+	["<leader>f"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find File" },
+	["<leader>st"] = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep" },
+	["<leader>sb"] = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List Buffers" },
 })
 
 -- WINDOW
