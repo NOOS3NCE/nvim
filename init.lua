@@ -10,6 +10,8 @@ require('lualine').hide({
 	place = { 'tabline' }, -- The segment this change applies to.
 	unhide = false,  -- whether to reenable lualine again/
 })
+
+vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_references
 --NOT WORKING
 
 --Plugin specific configs.
@@ -75,6 +77,7 @@ vim.o.smartcase = true
 -- Decrease update time.
 vim.opt.updatetime = 50
 vim.wo.signcolumn = 'yes'
+vim.color_column = 100
 
 -- Set colorscheme defaults (order is important here).
 vim.o.termguicolors = true

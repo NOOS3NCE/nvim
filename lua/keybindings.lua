@@ -11,12 +11,6 @@ local wk = require("which-key")
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
---COMMENT
---vim.cmd("nnoremap <leader>/ gcc")
--- vim.api.nvim_set_keymap('n', '<Space>/', "'gcc'", { noremap = true, expr = true, silent = true })
--- vim.api.nvim_set_keymap('v', '<Space>/', "'gc'", { noremap = true, expr = true, silent = true })
---vim.cmd("vnoremap <leader>/ gc")
-
 --YANK/PASTE FROM CLIPBOARD
 vim.cmd('noremap y "*y')
 vim.cmd('noremap Y "*Y')
@@ -29,12 +23,15 @@ vim.cmd("nnoremap <A-k> :m .-2<CR>==")
 vim.cmd("inoremap <A-j> <Esc>:m .+1<CR>==gi")
 vim.cmd("inoremap <A-k> <Esc>:m .-2<CR>==gi")
 vim.cmd("vnoremap <A-j> :m '>+1<CR>gv=gv")
-vim.cmd("vnoremap <A-k> :m '<-2<CR>gv=gv") --NVIM TREE :vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
--- vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
+vim.cmd("vnoremap <A-k> :m '<-2<CR>gv=gv")
+
+--NVIM TREE 
+vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
+vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
 
 --HARPOON
-vim.cmd('nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>')
 vim.cmd('nnoremap <C-j> :lua require("harpoon.ui").nav_file(2)<CR>')
+vim.cmd('nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>')
 vim.cmd('nnoremap <C-k> :lua require("harpoon.ui").nav_file(3)<CR>')
 vim.cmd('nnoremap <C-l> :lua require("harpoon.ui").nav_file(4)<CR>')
 vim.cmd('nnoremap <C-i> :lua require("harpoon.ui").toggle_quick_menu()<CR>')
@@ -45,13 +42,6 @@ vim.cmd('nnoremap <leader><c-r> :lua require("harpoon.mark").rm_file()<cr>')
 vim.cmd('nnoremap <leader>ye :lua require("telescope").extensions.git_worktree.git_worktrees()<CR>')
 vim.cmd('nnoremap <leader>yc :lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>')
 
---GIT
-wk.register({
-	-- ["<leader>g"] = { name = "GIT" },
-	-- ["<leader>gd"] = { "<cmd>DiffViewOpen origin/dev<CR>", "Open Diff View" },
-	-- ["<leader>gm"] = { "<cmd>DiffViewOpen origin/main<CR>", "Open Diff View" },
-	-- ["<leader>gc"] = { "<cmd>DiffViewClose<CR>", "Close Diff View" },
-})
 vim.cmd('noremap <leader>bt :BlamerToggle<CR>')
 vim.cmd('noremap <leader>bg :GetprOpen<CR>')
 
@@ -69,4 +59,4 @@ wk.register({
 })
 
 --AUTOSAVE
-vim.cmd('nnoremap <leader>n :ASToggle<CR>')
+-- vim.cmd('nnoremap <leader>n :ASToggle<CR>')
