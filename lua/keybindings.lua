@@ -29,6 +29,10 @@ vim.cmd("vnoremap <A-k> :m '<-2<CR>gv=gv")
 vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
 vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
 
+--INDENT
+vim.cmd("vnoremap > >gvV")
+vim.cmd("vnoremap < <gvV")
+
 --HARPOON
 vim.cmd('nnoremap <C-j> :lua require("harpoon.ui").nav_file(2)<CR>')
 vim.cmd('nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>')
