@@ -18,20 +18,16 @@ vim.cmd('noremap p "*p')
 vim.cmd('noremap P "*P')
 
 --MOVE LINES UP AND DOWN
-vim.cmd("nnoremap <A-j> :m .+1<CR>==")
-vim.cmd("nnoremap <A-k> :m .-2<CR>==")
-vim.cmd("inoremap <A-j> <Esc>:m .+1<CR>==gi")
-vim.cmd("inoremap <A-k> <Esc>:m .-2<CR>==gi")
-vim.cmd("vnoremap <A-j> :m '>+1<CR>gv=gv")
-vim.cmd("vnoremap <A-k> :m '<-2<CR>gv=gv")
+vim.cmd("vnoremap <S-j> :m '>+1<CR>gv=gv")
+vim.cmd("vnoremap <S-k> :m '<-2<CR>gv=gv")
 
 --NVIM TREE 
 vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
 vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
 
 --INDENT
-vim.cmd("vnoremap > >gvV")
-vim.cmd("vnoremap < <gvV")
+vim.cmd("vnoremap > >gv")
+vim.cmd("vnoremap < <gv")
 
 --HARPOON
 vim.cmd('nnoremap <C-j> :lua require("harpoon.ui").nav_file(2)<CR>')

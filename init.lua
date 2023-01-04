@@ -115,6 +115,7 @@ vim.api.nvim_exec(
 	 [[
 	 augroup YankHighlight
 		 autocmd!
+		 hi IncSearch ctermbg=255 guibg=#FFFFFF
 		 autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 	 augroup end
 ]],
