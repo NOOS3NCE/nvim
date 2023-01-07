@@ -39,6 +39,7 @@ require('packer').startup(function()
 	use 'skanehira/getpr'
 	use 'skanehira/getpr.vim'
 	use 'APZelos/blamer.nvim'
+	use 'norcalli/nvim-colorizer.lua'
 	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 	use { 'romgrk/barbar.nvim', requires = 'kyazdani42/nvim-web-devicons' } 
 	use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
@@ -150,15 +151,15 @@ cmp.setup({
     ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
     ['<Down>'] = cmp.mapping.select_next_item(select_opts),
 
-    ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-    ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
-
+    -- ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+    -- ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+    --
+    -- ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    --
+    -- ['<C-e>'] = cmp.mapping.abort(),
+    -- ['<CR>'] = cmp.mapping.confirm({select = false}),
+    --
     ['<C-d>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)

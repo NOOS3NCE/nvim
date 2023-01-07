@@ -92,6 +92,11 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	}
 end
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" }
+}
 
 -- Make runtime files discoverable to the server.
 local runtime_path = vim.split(package.path, ';')

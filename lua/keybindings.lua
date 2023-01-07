@@ -35,7 +35,7 @@ vim.cmd('nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>')
 vim.cmd('nnoremap <C-k> :lua require("harpoon.ui").nav_file(3)<CR>')
 vim.cmd('nnoremap <C-l> :lua require("harpoon.ui").nav_file(4)<CR>')
 vim.cmd('nnoremap <C-i> :lua require("harpoon.ui").toggle_quick_menu()<CR>')
-vim.cmd('nnoremap <C-m> :lua require("harpoon.mark").add_file()<CR>')
+vim.cmd('nnoremap <C-a> :lua require("harpoon.mark").add_file()<CR>')
 vim.cmd('nnoremap <leader><c-r> :lua require("harpoon.mark").rm_file()<cr>')
 
 --WORKTREES

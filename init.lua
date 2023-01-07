@@ -15,12 +15,14 @@ vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_r
 --NOT WORKING
 
 --Plugin specific configs.
+vim.cmd("set termguicolors")
 require('plugs.gitsigns')
 require('plugs.treesitter')
 require('plugs.cmp')
 require('plugs.telescope')
 require("mason").setup()
 require('neoscroll').setup()
+require'colorizer'.setup()
 require('Comment').setup({
 	toggler = {
 		---Line-comment toggle keymap
@@ -35,7 +37,7 @@ require('Comment').setup({
 vim.opt.list = true
 --vim.opt.listchars:append "space:"
 require("indent_blankline").setup {
-	space_char_blankline = "",
+	-- space_char_blankline = "",
 }
 vim.opt.smartindent = true
 vim.opt.expandtab = false
@@ -109,6 +111,9 @@ vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup()
 require('harpoon').setup({
 	mark_branch = true,
+	-- menu = {
+	-- 	width = vim.api.nvim_win_get_width(0) - 4,
+	-- }
 })
 -- Highlight on yank (copy). It will do a nice highlight blink of the thing you just copied.
 vim.api.nvim_exec(
