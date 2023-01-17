@@ -10,7 +10,7 @@ require('lualine').hide({
 	place = { 'tabline' }, -- The segment this change applies to.
 	unhide = false,  -- whether to reenable lualine again/
 })
-
+vim.cmd('set clipboard+=unnamedplus')
 vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_references
 --NOT WORKING
 

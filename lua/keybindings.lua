@@ -25,6 +25,9 @@ vim.cmd("vnoremap <S-k> :m '<-2<CR>gv=gv")
 vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
 vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
 
+--TROUBLE
+vim.cmd("noremap <leader>tt :TroubleToggle<CR>")
+
 --INDENT
 vim.cmd("vnoremap > >gv")
 vim.cmd("vnoremap < <gv")

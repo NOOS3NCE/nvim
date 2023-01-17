@@ -39,6 +39,7 @@ require('packer').startup(function()
 	use 'skanehira/getpr.vim'
 	use 'APZelos/blamer.nvim'
 	use 'norcalli/nvim-colorizer.lua'
+<<<<<<< Updated upstream
 	--DASHBOARD
 	use 'glepnir/dashboard-nvim'
 	use {
@@ -48,6 +49,9 @@ require('packer').startup(function()
 		}
 	  end
 	}
+=======
+	use 'epwalsh/obsidian.nvim'
+>>>>>>> Stashed changes
 	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 	use { 'romgrk/barbar.nvim', requires = 'kyazdani42/nvim-web-devicons' } 
 	use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
@@ -159,15 +163,6 @@ cmp.setup({
     ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
     ['<Down>'] = cmp.mapping.select_next_item(select_opts),
 
-    -- ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-    -- ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-    --
-    -- ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    --
-    -- ['<C-e>'] = cmp.mapping.abort(),
-    -- ['<CR>'] = cmp.mapping.confirm({select = false}),
-    --
     ['<C-d>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
@@ -183,25 +178,17 @@ cmp.setup({
         fallback()
       end
     end, {'i', 's'}),
-
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      local col = vim.fn.col('.') - 1
-
-      if cmp.visible() then
-        cmp.select_next_item(select_opts)
-      elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        fallback()
-      else
-        cmp.complete()
-      end
-    end, {'i', 's'}),
-
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item(select_opts)
-      else
-        fallback()
-      end
-    end, {'i', 's'}),
   },
 })
+
+local function setup_lsp_diags()
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+      virtual_text = false,
+      signs = true,
+      update_in_insert = false,
+      underline = true,
+    }
+  )
+end
