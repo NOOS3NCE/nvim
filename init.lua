@@ -21,6 +21,7 @@ require('plugs.treesitter')
 require('plugs.cmp')
 require('plugs.telescope')
 require("mason").setup()
+--require('dashboard').setup()
 require('neoscroll').setup()
 require'colorizer'.setup()
 require('Comment').setup({
@@ -87,7 +88,7 @@ vim.o.background = 'dark'
 require('gruvbox').setup({
 	undercurl = true,
 	underline = true,
-	bold = true,
+	bold = false,
 	italic = true,
 	strikethrough = true,
 	invert_selection = false,
@@ -111,9 +112,10 @@ vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup()
 require('harpoon').setup({
 	mark_branch = true,
-	-- menu = {
-	-- 	width = vim.api.nvim_win_get_width(0) - 4,
-	-- }
+	menu = {
+		-- width = vim.api.nvim_win_get_width(0) - 20,
+		width = 100,
+	}
 })
 -- Highlight on yank (copy). It will do a nice highlight blink of the thing you just copied.
 vim.api.nvim_exec(

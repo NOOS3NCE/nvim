@@ -50,6 +50,8 @@ wk.register({
 	["<leader>f"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find File" },
 	["<leader>st"] = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep" },
 	["<leader>sb"] = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List Buffers" },
+	["<leader>sf"] = { "<cmd>lua require('telescope.builtin').quickfix()<cr>", "List Quickfix" },
+	["<leader>sj"] = { "<cmd>lua require('telescope.builtin').jumplist()<cr>", "List Jumps" },
 })
 
 -- WINDOW

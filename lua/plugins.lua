@@ -12,7 +12,6 @@ local use = require('packer').use
 require('packer').startup(function()
 	use 'numToStr/Comment.nvim'
 	use 'wbthomason/packer.nvim'
-	use "lukas-reineke/indent-blankline.nvim"
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-commentary'
 	use 'tpope/vim-surround'
@@ -40,6 +39,15 @@ require('packer').startup(function()
 	use 'skanehira/getpr.vim'
 	use 'APZelos/blamer.nvim'
 	use 'norcalli/nvim-colorizer.lua'
+	--DASHBOARD
+	use 'glepnir/dashboard-nvim'
+	use {
+	  "lukas-reineke/indent-blankline.nvim",
+	  config = function()
+		require("indent_blankline").setup { filetype_exclude = { "dashboard" }
+		}
+	  end
+	}
 	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 	use { 'romgrk/barbar.nvim', requires = 'kyazdani42/nvim-web-devicons' } 
 	use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }

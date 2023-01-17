@@ -1,6 +1,13 @@
 -- Telescope
 require('telescope').setup {
-  defaults = {
+	defaults = {
+		layout_config ={
+			horizontal= {
+				width = 0.99,
+				height = 0.99,
+
+				}
+			},
     mappings = {
       i = {
         ['<C-u>'] = false,
