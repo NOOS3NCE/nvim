@@ -31,6 +31,7 @@ require('packer').startup(function()
 	use 'ellisonleao/gruvbox.nvim' 
 	use 'karb94/neoscroll.nvim'
 	use 'nvim-tree/nvim-web-devicons'
+	use 'prettier/vim-prettier'
 	use 'airblade/vim-gitgutter'
 	use 'ThePrimeagen/harpoon'
 	use 'ThePrimeagen/git-worktree.nvim'
@@ -39,7 +40,6 @@ require('packer').startup(function()
 	use 'skanehira/getpr.vim'
 	use 'APZelos/blamer.nvim'
 	use 'norcalli/nvim-colorizer.lua'
-<<<<<<< Updated upstream
 	--DASHBOARD
 	use 'glepnir/dashboard-nvim'
 	use {
@@ -49,9 +49,7 @@ require('packer').startup(function()
 		}
 	  end
 	}
-=======
 	use 'epwalsh/obsidian.nvim'
->>>>>>> Stashed changes
 	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 	use { 'romgrk/barbar.nvim', requires = 'kyazdani42/nvim-web-devicons' } 
 	use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
