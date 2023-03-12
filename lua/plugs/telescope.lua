@@ -5,9 +5,9 @@ require('telescope').setup {
 			horizontal= {
 				width = 0.99,
 				height = 0.99,
-
 				}
 			},
+		path_display = {"truncate"},
     mappings = {
       i = {
         ['<C-u>'] = false,

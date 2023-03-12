@@ -85,11 +85,26 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- Enable the following language servers. If you ever find yourself needing another programming language support, you'll have to find its LSP, add it to this list and make sure it is installed in your system! We'll go through installing tsserver together for TypeScript support.
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = {vim.api.nvim_buf_get_name(0)},
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
 local servers = { 'rust_analyzer', 'tsserver', 'gopls', 'solargraph' }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {
 		on_attach = on_attach,
 		capabilities = capabilities,
+		commands = {
+			OrganizeImports = {
+				organize_imports,
+				description = "Organize Imports"
+			}
+		}
 	}
 end
 -- nvim_lsp.tsserver.setup {

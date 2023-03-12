@@ -1,21 +1,30 @@
 
--- Plugin specific keybindings are in the plugin's config files.
+-- plugin specific keybindings are in the plugin's config files.
 
--- Remap space as leader key. Leader key is a special key that will allow us to make some additional keybindings. I'm using a spacebar, but you can use whatever you'd wish. We'll use it (for example) for searching and changing files (by pressing spacebar, then `s` and then `f`).
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+-- remap space as leader key. leader key is a special key that will allow us to make some additional keybindings. i'm using a spacebar, but you can use whatever you'd wish. we'll use it (for example) for searching and changing files (by pressing spacebar, then `s` and then `f`).
+vim.api.nvim_set_keymap('', '<space>', '<nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.timeoutlen = 50
 local wk = require("which-key")
--- Remap for dealing with word wrap. In general, the `nvim_set_keymap` is the function we can use to create any keymap you'd wish. I tend to keep those related to the whole editor here, while leaving the ones for specific plugins to their own configuration files. That way if I ever remove or change plugins I can keep my keybindings clean.
+-- remap for dealing with word wrap. in general, the `nvim_set_keymap` is the function we can use to create any keymap you'd wish. i tend to keep those related to the whole editor here, while leaving the ones for specific plugins to their own configuration files. that way if i ever remove or change plugins i can keep my keybindings clean.
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
+--prettier partial visual mode
+vim.cmd("vnoremap <leader>gt :'<,'>prettierpartial<cr>")
+
+--sort selection alphabetically
+vim.cmd("vnoremap <leader>ga :'<,'>sort u<cr>")
+
+--ORGANIZE TYPESCRIPT IMPORTS
+vim.cmd("noremap <leader>gi :OrganizeImports<CR>")
+
 --YANK/PASTE FROM CLIPBOARD
 vim.cmd('noremap y "*y')
-vim.cmd('noremap Y "*Y')
+vim.cmd('noremap y "*y')
 vim.cmd('noremap p "*p')
-vim.cmd('noremap P "*P')
+vim.cmd('noremap p "*p')
 
 --MOVE LINES UP AND DOWN
 vim.cmd("vnoremap <S-j> :m '>+1<CR>gv=gv")

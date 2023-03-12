@@ -10,9 +10,25 @@ require('lualine').hide({
 	place = { 'tabline' }, -- The segment this change applies to.
 	unhide = false,  -- whether to reenable lualine again/
 })
+require'lspconfig'.eslint.setup{}
+--Indents word-wrapped lines as much as the 'parent' line
+vim.cmd('set breakindent')
+--Ensures word-wrap does not split words
+vim.cmd('set formatoptions=l')
+vim.cmd('set lbr')
+
 vim.cmd('set clipboard+=unnamedplus')
 vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_references
 --NOT WORKING
+--AUTO RELOAD ON FILE UPDATE
+vim.cmd([[
+	" trigger `autoread` when files changes on disk
+      set autoread
+      autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+    " notification after file change
+      autocmd FileChangedShellPost *
+        \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+]])
 
 --Plugin specific configs.
 vim.cmd("set termguicolors")
@@ -21,7 +37,7 @@ require('plugs.treesitter')
 require('plugs.cmp')
 require('plugs.telescope')
 require("mason").setup()
---require('dashboard').setup()
+require('dashboard').setup()
 require('neoscroll').setup()
 require'colorizer'.setup()
 require('Comment').setup({
@@ -31,7 +47,8 @@ require('Comment').setup({
 	},
 	opleader = {
 		---Line-comment toggle keymap
-		line = '<leader>/',
+		-- line = '<leader>/',
+		block = '<leader>/',
 	}
 })
 
@@ -128,3 +145,18 @@ vim.api.nvim_exec(
 ]],
   false
 )
+local ls = require("luasnip")
+local s = ls.snippet
+local sn = ls.snippet_node
+local isn = ls.indent_snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
+local r = ls.restore_node
+ls.add_snippets("all", {
+	s("/todo", {
+		t({"- [ ] "}), i(1),
+	})
+})
