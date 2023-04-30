@@ -10,6 +10,10 @@ require('lualine').hide({
 	place = { 'tabline' }, -- The segment this change applies to.
 	unhide = false,  -- whether to reenable lualine again/
 })
+--[[ require("persisted").setup({
+  autoload = true,
+  use_git_branch = true,
+}) ]]
 require'lspconfig'.eslint.setup{}
 --Indents word-wrapped lines as much as the 'parent' line
 vim.cmd('set breakindent')
@@ -37,7 +41,6 @@ require('plugs.treesitter')
 require('plugs.cmp')
 require('plugs.telescope')
 require("mason").setup()
-require('dashboard').setup()
 require('neoscroll').setup()
 require'colorizer'.setup()
 require('Comment').setup({
@@ -102,24 +105,9 @@ vim.color_column = 100
 -- Set colorscheme defaults (order is important here).
 vim.o.termguicolors = true
 vim.o.background = 'dark'
-require('gruvbox').setup({
-	undercurl = true,
-	underline = true,
-	bold = false,
-	italic = true,
-	strikethrough = true,
-	invert_selection = false,
-	invert_signs = false,
-	invert_tabline = false,
-	invert_intend_guides = false,
-	inverse = false, -- invert background for search, diffs, statuslines and errors
-	contrast = 'hard', -- can be "hard", "soft" or empty string
-	palette_overrides = {},
-	overrides = {},
-	dim_inactive = false,
-	transparent_mode = true,
-})
+-- COLOR SCHEME
 vim.cmd('colorscheme gruvbox')
+-- vim.cmd('colorscheme kanagawa-wave')
 
 --NVIM TREE SETUP
 vim.g.loaded_netrw = 1

@@ -28,7 +28,35 @@ require('packer').startup(function()
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'L3MON4D3/LuaSnip'
 	use 'rafamadriz/friendly-snippets'
-	use 'ellisonleao/gruvbox.nvim' 
+	--COLORSCHEMES
+	use {
+		'ellisonleao/gruvbox.nvim',
+		config = function()
+			require('gruvbox').setup({
+				undercurl = true,
+				underline = true,
+				bold = false,
+				italic = true,
+				strikethrough = true,
+				invert_selection = false,
+				invert_signs = false,
+				invert_tabline = false,
+				invert_intend_guides = false,
+				inverse = false, -- invert background for search, diffs, statuslines and errors
+				contrast = 'hard', -- can be "hard", "soft" or empty string
+				palette_overrides = {},
+				overrides = {},
+				dim_inactive = false,
+				transparent_mode = true,
+			})
+		end
+	}
+	use {
+		'rebelot/kanagawa.nvim',
+		config = function()
+			require('kanagawa').setup()
+		end
+	}
 	use 'karb94/neoscroll.nvim'
 	use 'nvim-tree/nvim-web-devicons'
 	use 'prettier/vim-prettier'
@@ -41,9 +69,15 @@ require('packer').startup(function()
 	use 'APZelos/blamer.nvim'
 	use 'norcalli/nvim-colorizer.lua'
 	--DASHBOARD
-	use 'glepnir/dashboard-nvim'
 	use {
-	  "lukas-reineke/indent-blankline.nvim",
+		'glepnir/dashboard-nvim',
+		after = 'persisted.nvim',
+		config = function()
+			require('dashboard').setup()
+		end
+	}
+	use {
+	  'lukas-reineke/indent-blankline.nvim',
 	  config = function()
 		require("indent_blankline").setup { filetype_exclude = { "dashboard" }
 		}
@@ -63,7 +97,13 @@ require('packer').startup(function()
 		config = function ()
 			require"octo".setup()
 		end
-	} 
+	}
+	use {
+		'simrat39/symbols-outline.nvim',
+		config = function()
+			require('symbols-outline').setup()
+		end
+	}
 	use {
 		'folke/which-key.nvim',
 		config = function()
@@ -108,6 +148,15 @@ require('packer').startup(function()
 			}
 		end,
 	}
+
+	use({
+	  "olimorris/persisted.nvim",
+	  config = function()
+	  require("persisted").setup({
+			autoload = true,
+			use_git_branch = true,
+		})end,
+	})
 	use {
 		 'williamboman/mason.nvim',
 	}

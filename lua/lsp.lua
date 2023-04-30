@@ -107,6 +107,10 @@ for _, lsp in ipairs(servers) do
 		}
 	}
 end
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+})
 -- nvim_lsp.tsserver.setup {
 --   on_attach = on_attach,
 --   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
