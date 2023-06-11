@@ -9,9 +9,12 @@ require('telescope').setup {
 			},
 		path_display = {"truncate"},
     mappings = {
+	  n = {
+    	['<c-d>'] = require('telescope.actions').delete_buffer,
+      },
       i = {
         ['<C-u>'] = false,
-        ['<C-d>'] = false,
+        ['<C-d>'] = require('telescope.actions').delete_buffer,
       },
     },
   },

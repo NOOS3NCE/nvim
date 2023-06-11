@@ -28,6 +28,18 @@ require('packer').startup(function()
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'L3MON4D3/LuaSnip'
 	use 'rafamadriz/friendly-snippets'
+	--GIT
+	use {
+	  'pwntester/octo.nvim',
+	  requires = {
+		'nvim-lua/plenary.nvim',
+		'nvim-telescope/telescope.nvim',
+		'nvim-tree/nvim-web-devicons',
+	  },
+	  config = function ()
+		require"octo".setup()
+	  end
+	}
 	--COLORSCHEMES
 	use {
 		'ellisonleao/gruvbox.nvim',
@@ -83,21 +95,9 @@ require('packer').startup(function()
 		}
 	  end
 	}
-	use 'epwalsh/obsidian.nvim'
 	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 	use { 'romgrk/barbar.nvim', requires = 'kyazdani42/nvim-web-devicons' } 
 	use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
-	use {
-		'pwntester/octo.nvim',
-		requires = {
-			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope.nvim',
-			'kyazdani42/nvim-web-devicons',
-		},
-		config = function ()
-			require"octo".setup()
-		end
-	}
 	use {
 		'simrat39/symbols-outline.nvim',
 		config = function()

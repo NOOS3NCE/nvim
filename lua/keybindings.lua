@@ -48,7 +48,7 @@ vim.cmd('nnoremap <C-j> :lua require("harpoon.ui").nav_file(2)<CR>')
 vim.cmd('nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>')
 vim.cmd('nnoremap <C-k> :lua require("harpoon.ui").nav_file(3)<CR>')
 vim.cmd('nnoremap <C-l> :lua require("harpoon.ui").nav_file(4)<CR>')
-vim.cmd('nnoremap <C-i> :lua require("harpoon.ui").toggle_quick_menu()<CR>')
+vim.cmd('nnoremap <leader>i :lua require("harpoon.ui").toggle_quick_menu()<CR>')
 vim.cmd('nnoremap <C-a> :lua require("harpoon.mark").add_file()<CR>')
 vim.cmd('nnoremap <leader><c-r> :lua require("harpoon.mark").rm_file()<cr>')
 
@@ -70,6 +70,7 @@ wk.register({
 	["<leader>sf"] = { "<cmd>lua require('telescope.builtin').quickfix()<cr>", "List Quickfix" },
 	["<leader>sj"] = { "<cmd>lua require('telescope.builtin').jumplist()<cr>", "List Jumps" },
 })
+vim.cmd('noremap <C-d> :lua require("telescope.actions").delete_buffer<CR>')
 
 -- WINDOW
 wk.register({

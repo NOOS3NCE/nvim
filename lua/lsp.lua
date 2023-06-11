@@ -57,7 +57,7 @@ cmp.setup.cmdline(':', {
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
--- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<space>do', vim.diagnostic.open_float, opts)
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
@@ -111,11 +111,6 @@ end
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
--- nvim_lsp.tsserver.setup {
---   on_attach = on_attach,
---   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
---   cmd = { "typescript-language-server", "--stdio" }
--- }
 
 -- Make runtime files discoverable to the server.
 local runtime_path = vim.split(package.path, ';')
