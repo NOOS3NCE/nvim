@@ -5,7 +5,7 @@
 vim.api.nvim_set_keymap('', '<space>', '<nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.opt.timeoutlen = 50
+vim.opt.timeoutlen = 500
 local wk = require("which-key")
 -- remap for dealing with word wrap. in general, the `nvim_set_keymap` is the function we can use to create any keymap you'd wish. i tend to keep those related to the whole editor here, while leaving the ones for specific plugins to their own configuration files. that way if i ever remove or change plugins i can keep my keybindings clean.
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -33,8 +33,10 @@ vim.cmd("vnoremap <S-j> :m '>+1<CR>gv=gv")
 vim.cmd("vnoremap <S-k> :m '<-2<CR>gv=gv")
 
 --NVIM TREE 
-vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
-vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
+--[[ vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
+vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>") ]]
+vim.cmd("noremap <leader>eb :Telescope file_browser path=%:p:h select_buffer=true<CR>")
+vim.cmd("noremap <leader>ef :Telescope file_browser<CR>")
 
 --TROUBLE
 vim.cmd("noremap <leader>tt :TroubleToggle<CR>")

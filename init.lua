@@ -114,7 +114,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- empty setup using defaults
-require('nvim-tree').setup()
+-- require('nvim-tree').setup()
 require('harpoon').setup({
 	mark_branch = true,
 	menu = {
@@ -143,8 +143,3 @@ local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
 local r = ls.restore_node
-ls.add_snippets("all", {
-	s("/todo", {
-		t({"- [ ] "}), i(1),
-	})
-})

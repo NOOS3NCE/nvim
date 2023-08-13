@@ -11,6 +11,7 @@ end
 local use = require('packer').use
 require('packer').startup(function()
 	use 'numToStr/Comment.nvim'
+	use 'f-person/git-blame.nvim'
 	use 'wbthomason/packer.nvim'
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-commentary'
@@ -72,13 +73,35 @@ require('packer').startup(function()
 	use 'karb94/neoscroll.nvim'
 	use 'nvim-tree/nvim-web-devicons'
 	use 'prettier/vim-prettier'
+	--[[ use {
+		'MunifTanjim/prettier.nvim',
+		config = function()
+			require('prettier').setup({
+				bin = 'prettierd',
+				filetypes = {
+					"css",
+					"graphql",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"json",
+					"less",
+					"markdown",
+					"scss",
+					"typescript",
+					"typescriptreact",
+					"yaml",
+				},
+			})
+		end
+	} ]]
 	use 'airblade/vim-gitgutter'
 	use 'ThePrimeagen/harpoon'
 	use 'ThePrimeagen/git-worktree.nvim'
 	use "LinArcX/telescope-command-palette.nvim"
 	use 'skanehira/getpr'
 	use 'skanehira/getpr.vim'
-	use 'APZelos/blamer.nvim'
+	-- use 'APZelos/blamer.nvim'
 	use 'norcalli/nvim-colorizer.lua'
 	--DASHBOARD
 	use {
@@ -116,11 +139,11 @@ require('packer').startup(function()
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
 	use {
-		'nvim-tree/nvim-tree.lua',
-		requires = {
-			'nvim-tree/nvim-web-devicons',
-		},
-		tag = 'nightly'
+		"nvim-telescope/telescope-file-browser.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").load_extension "file_browser"
+		end
 	}
 	use {
 		'folke/trouble.nvim',
@@ -160,6 +183,34 @@ require('packer').startup(function()
 	use {
 		 'williamboman/mason.nvim',
 	}
+	-- Hover
+	use {
+    "lewis6991/hover.nvim",
+    config = function()
+        require("hover").setup {
+            init = function()
+                -- Require providers
+                require("hover.providers.lsp")
+                require('hover.providers.gh')
+                -- require('hover.providers.gh_user')
+                -- require('hover.providers.jira')
+                require('hover.providers.man')
+                -- require('hover.providers.dictionary')
+            end,
+            preview_opts = {
+                border = nil
+            },
+            -- Whether the contents of a currently open hover window should be moved
+            -- to a :h preview-window when pressing the hover keymap.
+            preview_window = false,
+            title = true
+        }
+
+        -- Setup keymaps
+        vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+        vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
+    end
+}
 end)
 
 -- luasnip setup (you can leave this here or move it to its own configuration file in `lua/plugs/luasnip.lua`.)

@@ -7,15 +7,15 @@ require('telescope').setup {
 				height = 0.99,
 				}
 			},
-		path_display = {"truncate"},
-    mappings = {
-	  n = {
-    	['<c-d>'] = require('telescope.actions').delete_buffer,
-      },
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = require('telescope.actions').delete_buffer,
-      },
+		-- path_display = {"truncate"},
+		mappings = {
+		  n = {
+			['<c-d>'] = require('telescope.actions').delete_buffer,
+		  },
+		  i = {
+			['<C-u>'] = false,
+			['<C-d>'] = require('telescope.actions').delete_buffer,
+		  },
     },
   },
 }
