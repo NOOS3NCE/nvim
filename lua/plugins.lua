@@ -10,7 +10,9 @@ end
 -- Here we can declare the plugins we'll be using.
 local use = require('packer').use
 require('packer').startup(function()
+	use 'voldikss/vim-floaterm'
 	use 'numToStr/Comment.nvim'
+	use 'L3MON4D3/LuaSnip'
 	use 'f-person/git-blame.nvim'
 	use 'wbthomason/packer.nvim'
 	use 'tpope/vim-fugitive'
@@ -26,9 +28,12 @@ require('packer').startup(function()
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
-	use 'saadparwaiz1/cmp_luasnip'
-	use 'L3MON4D3/LuaSnip'
-	use 'rafamadriz/friendly-snippets'
+	use {
+		'nvim-pack/nvim-spectre',
+		config = function()
+			require('spectre').setup()
+		end
+	}
 	--GIT
 	use {
 	  'pwntester/octo.nvim',
@@ -49,7 +54,11 @@ require('packer').startup(function()
 				undercurl = true,
 				underline = true,
 				bold = false,
-				italic = true,
+				italic = {
+					strings = true,
+					operators = true,
+					comments = true,
+				},
 				strikethrough = true,
 				invert_selection = false,
 				invert_signs = false,
@@ -64,63 +73,45 @@ require('packer').startup(function()
 			})
 		end
 	}
-	use {
-		'rebelot/kanagawa.nvim',
-		config = function()
-			require('kanagawa').setup()
-		end
-	}
 	use 'karb94/neoscroll.nvim'
 	use 'nvim-tree/nvim-web-devicons'
-	use 'prettier/vim-prettier'
-	--[[ use {
+	use 'jose-elias-alvarez/null-ls.nvim'
+	use {
 		'MunifTanjim/prettier.nvim',
 		config = function()
-			require('prettier').setup({
-				bin = 'prettierd',
-				filetypes = {
-					"css",
-					"graphql",
-					"html",
-					"javascript",
-					"javascriptreact",
-					"json",
-					"less",
-					"markdown",
-					"scss",
-					"typescript",
-					"typescriptreact",
-					"yaml",
-				},
-			})
+		require("prettier").setup({
+		  bin = 'prettierd',
+		  filetypes = {
+			"css",
+			"graphql",
+			"html",
+			"javascript",
+			"javascriptreact",
+			"json",
+			"less",
+			"markdown",
+			"scss",
+			"typescript",
+			"typescriptreact",
+			"yaml",
+		  },
+		})
 		end
-	} ]]
-	use 'airblade/vim-gitgutter'
+	}
 	use 'ThePrimeagen/harpoon'
-	use 'ThePrimeagen/git-worktree.nvim'
 	use "LinArcX/telescope-command-palette.nvim"
-	use 'skanehira/getpr'
-	use 'skanehira/getpr.vim'
-	-- use 'APZelos/blamer.nvim'
 	use 'norcalli/nvim-colorizer.lua'
 	--DASHBOARD
-	use {
-		'glepnir/dashboard-nvim',
-		after = 'persisted.nvim',
-		config = function()
-			require('dashboard').setup()
-		end
-	}
-	use {
-	  'lukas-reineke/indent-blankline.nvim',
-	  config = function()
-		require("indent_blankline").setup { filetype_exclude = { "dashboard" }
-		}
-	  end
-	}
+	use 'lukas-reineke/indent-blankline.nvim'
 	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 	use { 'romgrk/barbar.nvim', requires = 'kyazdani42/nvim-web-devicons' } 
-	use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
+	-- use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
+	use { 'lewis6991/gitsigns.nvim',
+			requires = 'nvim-lua/plenary.nvim',
+			config = function()
+				require('gitsigns').setup()
+			end
+	}
 	use {
 		'simrat39/symbols-outline.nvim',
 		config = function()
@@ -213,7 +204,7 @@ require('packer').startup(function()
 }
 end)
 
--- luasnip setup (you can leave this here or move it to its own configuration file in `lua/plugs/luasnip.lua`.)
+--[[ -- luasnip setup (you can leave this here or move it to its own configuration file in `lua/plugs/luasnip.lua`.)
 luasnip = require 'luasnip'
 local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
@@ -289,4 +280,4 @@ local function setup_lsp_diags()
       underline = true,
     }
   )
-end
+end ]]

@@ -2,7 +2,6 @@ require('plugins')
 require('keybindings')
 require('lsp')
 require('telescope').load_extension('harpoon')
-require('telescope').load_extension('git_worktree')
 require('lualine').setup {
 	options = { theme = 'gruvbox' }
 }
@@ -10,11 +9,9 @@ require('lualine').hide({
 	place = { 'tabline' }, -- The segment this change applies to.
 	unhide = false,  -- whether to reenable lualine again/
 })
---[[ require("persisted").setup({
-  autoload = true,
-  use_git_branch = true,
-}) ]]
 require'lspconfig'.eslint.setup{}
+
+vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though
 --Indents word-wrapped lines as much as the 'parent' line
 vim.cmd('set breakindent')
 --Ensures word-wrap does not split words
@@ -30,17 +27,20 @@ vim.cmd([[
       set autoread
       autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
     " notification after file change
-      autocmd FileChangedShellPost *
-        \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+      " autocmd FileChangedShellPost *
+        " \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 ]])
-
+vim.diagnostic.config({
+  virtual_text = false
+})
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
 --Plugin specific configs.
 vim.cmd("set termguicolors")
-require('plugs.gitsigns')
+-- require('plugs.gitsigns')
 require('plugs.treesitter')
 require('plugs.cmp')
 require('plugs.telescope')
-require("mason").setup()
+require("mason").setup({ PATH = "prepend" })
 require('neoscroll').setup()
 require'colorizer'.setup()
 require('Comment').setup({
@@ -56,10 +56,7 @@ require('Comment').setup({
 })
 
 vim.opt.list = true
---vim.opt.listchars:append "space:"
-require("indent_blankline").setup {
-	-- space_char_blankline = "",
-}
+-- vim.opt.listchars:append "space:"
 vim.opt.smartindent = true
 vim.opt.expandtab = false
 vim.opt.softtabstop = -1
@@ -68,6 +65,7 @@ vim.opt.showtabline = 0
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+
 -- Set pop up menus bgs to transparent, also sign column
 vim.cmd([[
 augroup my_color_scheme
@@ -76,6 +74,8 @@ augroup my_color_scheme
 	autocmd ColorScheme * highlight SignColumn guibg=NONE ctermbg=NONE
 	autocmd ColorScheme * highlight VertSplit guibg=NONE ctermbg=NONE
 	autocmd ColorScheme * highlight BufferLineBackground guibg=NONE ctermbg=NONE
+	autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+	autocmd ColorScheme * highlight NonText ctermbg=NONE guibg=NONE
 augroup END ]])
 
 -- set no expand tab on opening any file (need this fix for ruby files)
@@ -98,9 +98,9 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Decrease update time.
-vim.opt.updatetime = 50
+vim.opt.updatetime = 20
 vim.wo.signcolumn = 'yes'
-vim.color_column = 100
+vim.color_column = 80
 
 -- Set colorscheme defaults (order is important here).
 vim.o.termguicolors = true
@@ -109,19 +109,14 @@ vim.o.background = 'dark'
 vim.cmd('colorscheme gruvbox')
 -- vim.cmd('colorscheme kanagawa-wave')
 
---NVIM TREE SETUP
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- empty setup using defaults
--- require('nvim-tree').setup()
-require('harpoon').setup({
-	mark_branch = true,
-	menu = {
-		-- width = vim.api.nvim_win_get_width(0) - 20,
-		width = 100,
-	}
-})
+-- require('harpoon').setup({
+-- 	mark_branch = true,
+-- 	menu = {
+-- 		-- width = vim.api.nvim_win_get_width(0) - 20,
+-- 		width = 100,
+-- 	}
+-- })
 -- Highlight on yank (copy). It will do a nice highlight blink of the thing you just copied.
 vim.api.nvim_exec(
 	 [[
@@ -133,13 +128,3 @@ vim.api.nvim_exec(
 ]],
   false
 )
-local ls = require("luasnip")
-local s = ls.snippet
-local sn = ls.snippet_node
-local isn = ls.indent_snippet_node
-local t = ls.text_node
-local i = ls.insert_node
-local f = ls.function_node
-local c = ls.choice_node
-local d = ls.dynamic_node
-local r = ls.restore_node

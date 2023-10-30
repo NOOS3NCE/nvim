@@ -1,6 +1,19 @@
 local cmp = require 'cmp'
 local nvim_lsp = require 'lspconfig'
 
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "ruby",
+--   group = vim.api.nvim_create_augroup("RubyLSP", { clear = true }), -- also this is not /needed/ but it's good practice 
+--   callback = function()
+--     vim.lsp.start {
+--       name = "standard",
+--       cmd = { "~/.asdf/shims/standardrb", "--lsp" },
+--     }
+--   end,
+-- })
+
+
+
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -96,7 +109,7 @@ local function organize_imports()
   vim.lsp.buf.execute_command(params)
 end
 
-local servers = { 'rust_analyzer', 'tsserver', 'gopls', 'solargraph' }
+local servers = { 'rust_analyzer', 'tsserver', 'gopls', 'solargraph', 'standardrb' }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {
 		on_attach = on_attach,
@@ -121,6 +134,5 @@ table.insert(runtime_path, 'lua/?/init.lua')
 
 -- Set completeopt to have a better completion experience.
 vim.o.completeopt = 'menuone,noselect'
-
 
 

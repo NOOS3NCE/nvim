@@ -10,6 +10,20 @@ local wk = require("which-key")
 -- remap for dealing with word wrap. in general, the `nvim_set_keymap` is the function we can use to create any keymap you'd wish. i tend to keep those related to the whole editor here, while leaving the ones for specific plugins to their own configuration files. that way if i ever remove or change plugins i can keep my keybindings clean.
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+
+--CENTER SEARCHES
+vim.cmd('noremap n nzz')
+vim.cmd('noremap N Nzz')
+
+--LAZYGIT FLAOTERM
+vim.keymap.set('n', '<leader>lg','<cmd>FloatermNew --disposable --height=0.95 --width=0.95 lazygit<CR>', {
+	desc = 'Toggle LazyGit'
+})
+
+--SPECTRE
+vim.keymap.set('n', '<leader>ss', '<cmd>lua require("spectre").toggle()<CR>', {
+    desc = "Toggle Spectre"
+})
 --Keep screen centered
 vim.cmd(":noremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>")
 
