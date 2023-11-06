@@ -16,8 +16,13 @@ vim.cmd('noremap n nzz')
 vim.cmd('noremap N Nzz')
 
 --LAZYGIT FLAOTERM
-vim.keymap.set('n', '<leader>lg','<cmd>FloatermNew --disposable --height=0.95 --width=0.95 lazygit<CR>', {
-	desc = 'Toggle LazyGit'
+vim.keymap.set('n', '<leader>lg', '<cmd>FloatermNew --width=1.0 --height=1.0 --disposable lazygit<CR>', {
+    desc = "Toggle LazyGit"
+})
+
+--VIEWDIFF
+vim.keymap.set('n', '<leader>vg', '<cmd>DiffviewOpen<CR>', {
+    desc = "Toggle LazyGit"
 })
 
 --SPECTRE
