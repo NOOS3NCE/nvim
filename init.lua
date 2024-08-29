@@ -10,7 +10,6 @@ require('lualine').hide({
 	unhide = false,  -- whether to reenable lualine again/
 })
 require'lspconfig'.eslint.setup{}
-
 vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though
 --Indents word-wrapped lines as much as the 'parent' line
 vim.cmd('set breakindent')
@@ -20,6 +19,7 @@ vim.cmd('set lbr')
 
 vim.cmd('set clipboard+=unnamedplus')
 vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_references
+
 --NOT WORKING
 --AUTO RELOAD ON FILE UPDATE
 vim.cmd([[
@@ -40,9 +40,9 @@ vim.cmd("set termguicolors")
 require('plugs.treesitter')
 require('plugs.cmp')
 require('plugs.telescope')
+--require('plugs.dap')
+--require('plugs.dapui')
 require("mason").setup({ PATH = "prepend" })
-require('neoscroll').setup()
-require'colorizer'.setup()
 require('Comment').setup({
 	toggler = {
 		---Line-comment toggle keymap
@@ -77,9 +77,6 @@ augroup my_color_scheme
 	autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 	autocmd ColorScheme * highlight NonText ctermbg=NONE guibg=NONE
 augroup END ]])
-
--- set no expand tab on opening any file (need this fix for ruby files)
-vim.cmd('autocmd FileType ruby setlocal noexpandtab shiftwidth=4 tabstop=4')
 
 -- Set highlight on search. This will remove the highlight after searching for text.
 vim.o.hlsearch = false
@@ -128,3 +125,18 @@ vim.api.nvim_exec(
 ]],
   false
 )
+--[[
+-- set no expand tab on opening any file (need this fix for ruby files)
+vim.cmd('autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2')
+vim.cmd('autocmd FileType ruby setlocal expandtab')
+
+-- https://github.com/neovim/neovim/issues/21749#issuecomment-1378720864
+-- Fix loading of json5
+table.insert(vim._so_trails, "/?.dylib")
+
+require('dap.ext.vscode').load_launchjs(nil,
+  { ['pwa-node'] = js_based_languages,
+    ['node'] = js_based_languages,
+    ['chrome'] = js_based_languages,
+    ['pwa-chrome'] = js_based_languages }
+) ]]

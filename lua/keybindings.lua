@@ -16,7 +16,7 @@ vim.cmd('noremap n nzz')
 vim.cmd('noremap N Nzz')
 
 --LAZYGIT FLAOTERM
-vim.keymap.set('n', '<leader>lg', '<cmd>FloatermNew --width=1.0 --height=1.0 --disposable lazygit<CR>', {
+vim.keymap.set('n', '<leader>lg', '<cmd>FloatermNew --width=1.0 --height=1.0 --disposable lazygit --use-config-file="/Users/michael/.config/lazygit/config.yml"<CR>', {
     desc = "Toggle LazyGit"
 })
 
@@ -25,10 +25,6 @@ vim.keymap.set('n', '<leader>vg', '<cmd>DiffviewOpen<CR>', {
     desc = "Toggle LazyGit"
 })
 
---SPECTRE
-vim.keymap.set('n', '<leader>ss', '<cmd>lua require("spectre").toggle()<CR>', {
-    desc = "Toggle Spectre"
-})
 --Keep screen centered
 vim.cmd(":noremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>")
 
@@ -52,8 +48,8 @@ vim.cmd("vnoremap <S-j> :m '>+1<CR>gv=gv")
 vim.cmd("vnoremap <S-k> :m '<-2<CR>gv=gv")
 
 --NVIM TREE 
---[[ vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
-vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>") ]]
+-- vim.cmd("noremap <leader>e :NvimTreeToggle<CR>")
+-- vim.cmd("noremap <leader>tf :NvimTreeFindFile<CR>")
 vim.cmd("noremap <leader>eb :Telescope file_browser path=%:p:h select_buffer=true<CR>")
 vim.cmd("noremap <leader>ef :Telescope file_browser<CR>")
 
@@ -65,23 +61,24 @@ vim.cmd("vnoremap > >gv")
 vim.cmd("vnoremap < <gv")
 
 --HARPOON
-vim.cmd('nnoremap <C-j> :lua require("harpoon.ui").nav_file(2)<CR>')
-vim.cmd('nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>')
-vim.cmd('nnoremap <C-k> :lua require("harpoon.ui").nav_file(3)<CR>')
-vim.cmd('nnoremap <C-l> :lua require("harpoon.ui").nav_file(4)<CR>')
-vim.cmd('nnoremap <leader>i :lua require("harpoon.ui").toggle_quick_menu()<CR>')
-vim.cmd('nnoremap <C-a> :lua require("harpoon.mark").add_file()<CR>')
-vim.cmd('nnoremap <leader><c-r> :lua require("harpoon.mark").rm_file()<cr>')
+-- vim.cmd('nnoremap <C-j> :lua require("harpoon.ui").nav_file(2)<CR>')
+-- vim.cmd('nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>')
+-- vim.cmd('nnoremap <C-k> :lua require("harpoon.ui").nav_file(3)<CR>')
+-- vim.cmd('nnoremap <C-l> :lua require("harpoon.ui").nav_file(4)<CR>')
+-- vim.cmd('nnoremap <leader>i :lua require("harpoon.ui").toggle_quick_menu()<CR>')
+-- vim.cmd('nnoremap <C-a> :lua require("harpoon.mark").add_file()<CR>')
+-- vim.cmd('nnoremap <leader><c-r> :lua require("harpoon.mark").rm_file()<cr>')
 
 --WORKTREES
-vim.cmd('nnoremap <leader>ye :lua require("telescope").extensions.git_worktree.git_worktrees()<CR>')
-vim.cmd('nnoremap <leader>yc :lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>')
+-- vim.cmd('nnoremap <leader>ye :lua require("telescope").extensions.git_worktree.git_worktrees()<CR>')
+-- vim.cmd('nnoremap <leader>yc :lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>')
 
 vim.cmd('noremap <leader>bt :BlamerToggle<CR>')
 vim.cmd('noremap <leader>bg :GetprOpen<CR>')
 
 --LSP QoL
 vim.cmd('noremap gh :lua vim.lsp.buf.hover()<CR>')
+vim.cmd('noremap <leader>gr :lua vim.lsp.buf.rename()<CR>')
 
 -- TELESCOPE
 wk.register({
@@ -98,6 +95,18 @@ wk.register({
 	["<leader>w"] = { name = "Window" },
 	["<leader>wv"] = { "<cmd> vsplit<CR>", "Vertical Split" },
 })
+--[[local dap = require("dap")
+
+-- Set keymaps to control the debugger
+vim.keymap.set('n', '<F5>', require 'dap'.continue)
+vim.keymap.set('n', '<F10>', require 'dap'.step_over)
+vim.keymap.set('n', '<F11>', require 'dap'.step_into)
+vim.keymap.set('n', '<F12>', require 'dap'.step_out)
+vim.keymap.set('n', '<leader>b', require 'dap'.toggle_breakpoint)
+vim.keymap.set('n', '<leader>B', function()
+  require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+end)
+]]
 
 --SAVE
 --vim.cmd('nnoremap <c-s> :w<CR>')
